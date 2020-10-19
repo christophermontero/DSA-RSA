@@ -1,6 +1,3 @@
-# Python program to create
-# a file explorer in Tkinter
-
 # import all components
 # from the tkinter library
 import tkinter as tk
@@ -8,18 +5,36 @@ import tkinter as tk
 # import filedialog module
 from tkinter import filedialog
 
+# Import owner classes
+import algorithms as alg  # Import all the algorithms to this file
+import utils
+
 # Function for opening the
 # file explorer root
 
-
 def browseFiles():
-    filename = filedialog.askopenfilename(initialdir="/home/giocom21/Documents",
-                                          title="Select a File",
-                                          filetypes=(("Text files",
-                                                      "*.txt*"),
-                                                     ("all files",
-                                                      "*.*")))
+  filename = filedialog.askopenfilename(initialdir="/home/giocom21/Documents",
+                                        title="Select a File",
+                                        filetypes=(("Text files",
+                                                    "*.txt*"),
+                                                   ("all files",
+                                                    "*.*")))
+  file_path.insert(tk.END, filename)
 
+def compute_digest():
+  path = file_path.get()
+  # Convert file from utf-8 to bytes
+  convert = utils.convert(path)
+  text_to_bytes = convert.to_bytes()
+
+  # Get hash function value
+  label_hash_function = control_variable.get()
+
+  # Compute digest
+  _hash = alg.hash(label_hash_function, text_to_bytes)
+  digest = _hash.function()
+
+  digest_text.insert(tk.END, digest)
 
 # Create the root root
 root = tk.Tk()
@@ -76,6 +91,8 @@ button_explore = tk.Button(frame1,
                            text="Browse Files",
                            command=browseFiles)
 
+file_path = tk.Entry(frame1)
+
 ### Widgets frame 2 ###
 
 # Create a select hash function label
@@ -87,14 +104,16 @@ label_hash_function.config(text="Select a hash funcion",
                            font=("Times", 12, "italic"))
 # Create a digest button
 button_digest = tk.Button(frame2,
-                          text="Compute digest")
+                          text="Compute digest",
+                          command=compute_digest)
 
 # Create hash option menu
 control_variable = tk.StringVar(frame2)
-control_variable.set("md5")
-OPTION_TUPLE = ("md5", "sha1", "sha256")
+control_variable.set("SHA224")
+OPTION_TUPLE = ("SHA224", "SHA256", "SHA384", "SHA512", "keccak")
 optionmenu_hash = tk.OptionMenu(frame2,
-                                control_variable, *OPTION_TUPLE)
+                                control_variable,
+                                *OPTION_TUPLE)
 
 # Create a text field wiht digest
 digest_text = tk.Text(frame2)
@@ -131,15 +150,15 @@ digest_text.place(relwidth=0.95,
 button_encrypt.place(relx=0.025,
                      rely=0.4)
 encrypt_rsa_text.place(relwidth=0.95,
-               relheight=0.2,
-               relx=0.025,
-               rely=0.48)
+                       relheight=0.2,
+                       relx=0.025,
+                       rely=0.48)
 button_decrypt.place(relx=0.025,
                      rely=0.71)
 decrypt_rsa_text.place(relwidth=0.95,
-               relheight=0.2,
-               relx=0.025,
-               rely=0.78)
+                       relheight=0.2,
+                       relx=0.025,
+                       rely=0.78)
 
 # Let the root wait for any events
 root.mainloop()
