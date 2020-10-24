@@ -1,6 +1,6 @@
 from Crypto.PublicKey import RSA
-from Crypto.Util.Padding import pad, unpad
 from Crypto.Hash import SHA224, SHA256, SHA384, SHA512, keccak
+from Crypto.Cipher import PKCS1_OAEP
 
 class rsa():
 	def __init__(self):
