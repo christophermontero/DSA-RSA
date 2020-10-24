@@ -162,6 +162,14 @@ entry_certifcate_name = tk.Entry(frame3)
 entry_certifcate_name.config(fg="black",
                              bg="white")
 
+# Create a name label
+label_name = tk.Label(frame3)
+label_name.config(text="Name",fg="black",bg="#73c6b6",pady=8,font=("Times", 12, "italic"))
+
+# Create a name entry
+entry_name = tk.Entry(frame3)
+entry_name.config(fg="black", bg="white")
+
 # Widgets is being placed in frame 1
 label_password.pack()
 entry_password.pack()
@@ -192,9 +200,10 @@ decrypt_rsa_text.place(relwidth=0.95,
 
 # Widgets is being placed in frame 1
 label_certificate.pack()
-label_certificate_name.place(relx=0.05,
-                             rely=0.05)
+label_certificate_name.place(relx=0.05,rely=0.05)
 entry_certifcate_name.place(relwidth=0.9, relheight=0.03, relx=0.05, rely=0.1)
+label_name.place(relx=0.05,rely=0.13)
+entry_name.place(relwidth=0.9, relheight=0.03, relx=0.05, rely=0.18)
 
 # Let the root wait for any events
 root.mainloop()
