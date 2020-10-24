@@ -50,17 +50,24 @@ canvas.pack()
 
 frame1 = tk.Frame(root, bg="#73c6b6")
 
-frame1.place(relwidth=0.9,
+frame1.place(relwidth=0.6,
              relheight=0.2,
              relx=0.05,
              rely=0.05)
 
 frame2 = tk.Frame(root, bg="#73c6b6")
 
-frame2.place(relwidth=0.9,
+frame2.place(relwidth=0.6,
              relheight=0.7,
              relx=0.05,
              rely=0.28)
+
+frame3 = tk.Frame(root, bg="#73c6b6")
+
+frame3.place(relwidth=0.3,
+             relheight=0.93,
+             relx=0.67,
+             rely=0.05)
 
 ### Widgets frame 1 ###
 
