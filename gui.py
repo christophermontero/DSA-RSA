@@ -43,8 +43,8 @@ root = tk.Tk()
 root.title('DSA')
 
 canvas = tk.Canvas(root,
-                   height=720,
-                   width=1080,
+                   height=740,
+                   width=1360,
                    bg="#0e6655")
 canvas.pack()
 
