@@ -139,6 +139,29 @@ encrypt_rsa_text = tk.Text(frame2)
 # Create a text field wiht digest decripted
 decrypt_rsa_text = tk.Text(frame2)
 
+### Widgets frame 3 ###
+
+# Create a certifcate label
+label_certificate = tk.Label(frame3)
+label_certificate.config(text="Certificate",
+                           fg="black",
+                           bg="#73c6b6",
+                           pady=8,
+                           font=("Times", 14, "italic"))
+
+# Create a certifcate name label
+label_certificate_name = tk.Label(frame3)
+label_certificate_name.config(text="Certificate name",
+                               fg="black",
+                               bg="#73c6b6",
+                               pady=8,
+                               font=("Times", 12, "italic"))
+
+# Create a certifcate name entry
+entry_certifcate_name = tk.Entry(frame3)
+entry_certifcate_name.config(fg="black",
+                             bg="white")
+
 # Widgets is being placed in frame 1
 label_password.pack()
 entry_password.pack()
@@ -166,6 +189,12 @@ decrypt_rsa_text.place(relwidth=0.95,
                        relheight=0.2,
                        relx=0.025,
                        rely=0.78)
+
+# Widgets is being placed in frame 1
+label_certificate.pack()
+label_certificate_name.place(relx=0.05,
+                             rely=0.05)
+entry_certifcate_name.place(relwidth=0.9, relheight=0.03, relx=0.05, rely=0.1)
 
 # Let the root wait for any events
 root.mainloop()
