@@ -36,9 +36,12 @@ def compute_digest():
 
   digest_text.insert(tk.END, digest)
   
-def key_pair():
+def sign():
     rsa = alg.rsa()
     rsa.generate_key_pair()
+    
+def validate_sign():
+    pass
 
 # Create the root
 root = tk.Tk()
@@ -125,11 +128,19 @@ digest_text = tk.Text(frame2)
 
 # Create encrypt button
 button_encrypt = tk.Button(frame2,
-                           text="Generate Key pair",
-                           command=key_pair)
+                           text="Sign",
+                           command=sign)
 
 # Create a text field wiht digest encrypted
 encrypt_rsa_text = tk.Text(frame2)
+
+# Create decrypt button
+button_decrypt = tk.Button(frame2,
+                           text="Validate sign",
+                           command=validate_sign)
+
+# Create a text field wiht digest decrypted
+decrypt_rsa_text = tk.Text(frame2)
 
 ### Widgets frame 3 ###
 
@@ -189,13 +200,19 @@ optionmenu_hash.place(relx=0.62,
                       rely=0.01)
 button_digest.pack()
 digest_text.place(relwidth=0.95,
-                  relheight=0.2,
+                  relheight=0.04,
                   relx=0.025,
-                  rely=0.18)
+                  rely=0.14)
 button_encrypt.place(relx=0.025,
-                     rely=0.4)
+                     rely=0.2)
 encrypt_rsa_text.place(relwidth=0.95,
-                       relheight=0.2,
+                       relheight=0.1,
+                       relx=0.025,
+                       rely=0.27)
+button_decrypt.place(relx=0.025,
+                     rely=0.4)
+decrypt_rsa_text.place(relwidth=0.95,
+                       relheight=0.1,
                        relx=0.025,
                        rely=0.48)
 
