@@ -213,21 +213,21 @@ optionmenu_hash.place(relx=0.62,
                       rely=0.01)
 button_digest.pack()
 digest_text.place(relwidth=0.95,
-                  relheight=0.04,
+                  relheight=0.09,
                   relx=0.025,
                   rely=0.14)
 button_encrypt.place(relx=0.025,
-                     rely=0.2)
+                     rely=0.25)
 encrypt_rsa_text.place(relwidth=0.95,
-                       relheight=0.1,
+                       relheight=0.15,
                        relx=0.025,
-                       rely=0.27)
+                       rely=0.32)
 button_decrypt.place(relx=0.025,
-                     rely=0.4)
+                     rely=0.5)
 decrypt_rsa_text.place(relwidth=0.95,
-                       relheight=0.1,
+                       relheight=0.09,
                        relx=0.025,
-                       rely=0.48)
+                       rely=0.57)
 
 # Widgets is being placed in frame 3
 label_certificate.pack()
