@@ -39,14 +39,16 @@ def compute_digest():
 def sign():
     rsa = alg.rsa()
     rsa.generate_key_pair()
-    digest = digest_text.get('1.0', tk.END)
-    digest_bytes = str.encode(digest)
-    print(type(digest_bytes))
+    digest_bytes = str.encode(digest_text.get('1.0', tk.END))
     sign = rsa.encrypt_key(digest_bytes)
     encrypt_rsa_text.insert(tk.END, sign.hex())
     
 def validate_sign():
-    pass
+    rsa = alg.rsa()
+    sign_bytes = str.encode(encrypt_rsa_text.get('1.0', tk.END))
+    print(type(sign_bytes))
+    validation = rsa.decrypt_key(sign_bytes)
+    decrypt_rsa_text.insert(tk.END, validation.hex())
 
 # Create the root
 root = tk.Tk()
