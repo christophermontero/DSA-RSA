@@ -23,7 +23,7 @@ class rsa():
 		return self.private_key, self.public_key
 
 	def encrypt_key(self, session_key):
-		recipent_key = RSA.import_key(open("public.pem").read())
+		recipent_key = RSA.import_key(open("private.pem").read())
 
 		# Encrypt the session key with the public RSA key
 		cipher_rsa = PKCS1_OAEP.new(recipent_key)

@@ -39,6 +39,11 @@ def compute_digest():
 def sign():
     rsa = alg.rsa()
     rsa.generate_key_pair()
+    digest = digest_text.get('1.0', tk.END)
+    digest_bytes = str.encode(digest)
+    print(type(digest_bytes))
+    sign = rsa.encrypt_key(digest_bytes)
+    encrypt_rsa_text.insert(tk.END, sign.hex())
     
 def validate_sign():
     pass
