@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import filedialog
 
 # Import owner classes
-import algorithms as alg  # Import all the algorithms to this file
+import algorithms  # Import all the algorithms to this file
 import utils
 
 # Function for opening the
@@ -33,14 +33,14 @@ def compute_digest():
   label_hash_function = control_variable.get()
 
   # Compute digest
-  _hash = alg.hash(label_hash_function, text_to_bytes)
+  _hash = algorithms.hash(label_hash_function, text_to_bytes)
   digest = _hash.function()
 
   digest_text.insert(tk.END, digest)
 
 
 def sign():
-  rsa = alg.rsa()
+  rsa = algorithms.rsa()
   rsa.generate_key_pair()
   digest_bytes = str.encode(digest_text.get('1.0', tk.END))
   sign = rsa.encrypt_key(digest_bytes)
@@ -48,12 +48,35 @@ def sign():
 
 
 def validate_sign():
-  rsa = alg.rsa()
+  rsa = algorithms.rsa()
   digest_bytes = str.encode(digest_text.get('1.0', tk.END))
   sign = rsa.encrypt_key(digest_bytes)
   sign = rsa.encrypt_key(digest_bytes)
   validation = rsa.decrypt_key(sign)
   decrypt_rsa_text.insert(tk.END, validation.decode())
+
+
+def gen_cert():
+  # Let's get message
+  path = file_path.get()
+  file_utf8 = open(path, "r", encoding='utf-8')
+  text = file_utf8.read()
+  file_utf8.close()
+
+  # Let's get password salted
+  password_salted = algorithms.expanded_key(entry_password.get())
+  get_salt = password_salted.salt()
+  digest_salted = password_salted.digest()
+
+  cert_info = ("- Certificate name: " + entry_certifcate_name.get() + "\n" +
+               "- Name: " + entry_name.get() + "\n" +
+               "- Salt: " + get_salt + "\n" +
+               "- Password: " + digest_salted + "\n" + 
+               "- Hash function: " + control_variable.get() + "\n" +
+               "- Sign algorithm: RSA" + "\n" +
+               "- Sign: " + encrypt_rsa_text.get('1.0', tk.END) + "\n" +
+               "- Message: " + text)
+  certificate_text.insert(tk.END, cert_info)
 
 
 # Create the root
@@ -204,7 +227,8 @@ entry_password.config(fg="black", bg="white")
 
 # Create generate certificate button
 button_gen_certificate = tk.Button(frame3,
-                                   text="Generate certificate")
+                                   text="Generate certificate",
+                                   command=gen_cert)
 
 # Create a text field wiht certificate
 certificate_text = tk.Text(frame3)
@@ -260,7 +284,7 @@ entry_password.place(relwidth=0.9,
 button_gen_certificate.place(relx=0.05,
                              rely=0.36)
 certificate_text.place(relwidth=0.9,
-                       relheight=0.55,
+                       relheight=0.35,
                        relx=0.05,
                        rely=0.41)
 
