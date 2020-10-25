@@ -202,6 +202,13 @@ label_password.config(text="Password",
 entry_password = tk.Entry(frame3)
 entry_password.config(fg="black", bg="white")
 
+# Create generate certificate button
+button_gen_certificate = tk.Button(frame3,
+                                   text="Generate certificate")
+
+# Create a text field wiht certificate
+certificate_text = tk.Text(frame3)
+
 # Widgets is being placed in frame 1
 label_title.pack()
 label_file_explorer.pack()
@@ -250,6 +257,12 @@ entry_password.place(relwidth=0.9,
                      relheight=0.03,
                      relx=0.05,
                      rely=0.31)
+button_gen_certificate.place(relx=0.05,
+                             rely=0.36)
+certificate_text.place(relwidth=0.9,
+                       relheight=0.55,
+                       relx=0.05,
+                       rely=0.41)
 
 # Let the root wait for any events
 root.mainloop()
