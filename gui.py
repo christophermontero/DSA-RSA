@@ -35,8 +35,12 @@ def compute_digest():
   digest = _hash.function()
 
   digest_text.insert(tk.END, digest)
+  
+def key_pair():
+    rsa = alg.rsa()
+    rsa.generate_key_pair()
 
-# Create the root root
+# Create the root
 root = tk.Tk()
 
 # Set root title
@@ -127,7 +131,8 @@ digest_text = tk.Text(frame2)
 
 # Create encrypt button
 button_encrypt = tk.Button(frame2,
-                           text="Encrypt RSA")
+                           text="Generate Key pair",
+                           command=key_pair)
 
 # Create decrypt button
 button_decrypt = tk.Button(frame2,
@@ -198,12 +203,20 @@ decrypt_rsa_text.place(relwidth=0.95,
                        relx=0.025,
                        rely=0.78)
 
-# Widgets is being placed in frame 1
+# Widgets is being placed in frame 3
 label_certificate.pack()
-label_certificate_name.place(relx=0.05,rely=0.05)
-entry_certifcate_name.place(relwidth=0.9, relheight=0.03, relx=0.05, rely=0.1)
-label_name.place(relx=0.05,rely=0.13)
-entry_name.place(relwidth=0.9, relheight=0.03, relx=0.05, rely=0.18)
+label_certificate_name.place(relx=0.05,
+                             rely=0.05)
+entry_certifcate_name.place(relwidth=0.9, 
+                            relheight=0.03, 
+                            relx=0.05, 
+                            rely=0.1)
+label_name.place(relx=0.05,
+                 rely=0.13)
+entry_name.place(relwidth=0.9, 
+                 relheight=0.03, 
+                 relx=0.05, 
+                 rely=0.18)
 
 # Let the root wait for any events
 root.mainloop()
