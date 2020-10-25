@@ -75,19 +75,13 @@ frame3.place(relwidth=0.3,
 
 ### Widgets frame 1 ###
 
-# Create a password label
-label_password = tk.Label(frame1)
-label_password.config(text="Enter your password",
-                      fg="black",
-                      bg="#73c6b6",
-                      pady=8,
-                      font=("Times", 14, "italic"))
-
-# Create a password entry
-entry_password = tk.Entry(frame1)
-entry_password.config(width=60,
-                      fg="black",
-                      bg="white")
+# Create title label
+label_title = tk.Label(frame1)
+label_title.config(text="Digital Signature Algorithm",
+                  fg="black",
+                  bg="#73c6b6",
+                  pady=8,
+                  font=("Times", 24, "italic"))
 
 # Create a File Explorer label
 label_file_explorer = tk.Label(frame1)
@@ -134,15 +128,8 @@ button_encrypt = tk.Button(frame2,
                            text="Generate Key pair",
                            command=key_pair)
 
-# Create decrypt button
-button_decrypt = tk.Button(frame2,
-                           text="Decrypt RSA")
-
 # Create a text field wiht digest encrypted
 encrypt_rsa_text = tk.Text(frame2)
-
-# Create a text field wiht digest decripted
-decrypt_rsa_text = tk.Text(frame2)
 
 ### Widgets frame 3 ###
 
@@ -152,7 +139,7 @@ label_certificate.config(text="Certificate",
                            fg="black",
                            bg="#73c6b6",
                            pady=8,
-                           font=("Times", 14, "italic"))
+                           font=("Times", 24, "italic"))
 
 # Create a certifcate name label
 label_certificate_name = tk.Label(frame3)
@@ -169,15 +156,30 @@ entry_certifcate_name.config(fg="black",
 
 # Create a name label
 label_name = tk.Label(frame3)
-label_name.config(text="Name",fg="black",bg="#73c6b6",pady=8,font=("Times", 12, "italic"))
+label_name.config(text="Name",
+                  fg="black",
+                  bg="#73c6b6",
+                  pady=8,
+                  font=("Times", 12, "italic"))
 
 # Create a name entry
 entry_name = tk.Entry(frame3)
 entry_name.config(fg="black", bg="white")
 
+# Create password label
+label_password = tk.Label(frame3)
+label_password.config(text="Password",
+                  fg="black",
+                  bg="#73c6b6",
+                  pady=8,
+                  font=("Times", 12, "italic"))
+
+# Create a password entry
+entry_password = tk.Entry(frame3)
+entry_password.config(fg="black", bg="white")
+
 # Widgets is being placed in frame 1
-label_password.pack()
-entry_password.pack()
+label_title.pack()
 label_file_explorer.pack()
 button_explore.pack()
 
@@ -196,27 +198,28 @@ encrypt_rsa_text.place(relwidth=0.95,
                        relheight=0.2,
                        relx=0.025,
                        rely=0.48)
-button_decrypt.place(relx=0.025,
-                     rely=0.71)
-decrypt_rsa_text.place(relwidth=0.95,
-                       relheight=0.2,
-                       relx=0.025,
-                       rely=0.78)
 
 # Widgets is being placed in frame 3
 label_certificate.pack()
 label_certificate_name.place(relx=0.05,
-                             rely=0.05)
+                             rely=0.1)
 entry_certifcate_name.place(relwidth=0.9, 
                             relheight=0.03, 
                             relx=0.05, 
-                            rely=0.1)
+                            rely=0.15)
 label_name.place(relx=0.05,
-                 rely=0.13)
+                 rely=0.18)
 entry_name.place(relwidth=0.9, 
                  relheight=0.03, 
                  relx=0.05, 
-                 rely=0.18)
+                 rely=0.23)
+
+label_password.place(relx=0.05,
+                 rely=0.26)
+entry_password.place(relwidth=0.9, 
+                 relheight=0.03, 
+                 relx=0.05, 
+                 rely=0.31)
 
 # Let the root wait for any events
 root.mainloop()
