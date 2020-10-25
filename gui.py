@@ -71,7 +71,7 @@ def gen_cert():
   cert_info = ("- Certificate name: " + entry_certifcate_name.get() + "\n" +
                "- Name: " + entry_name.get() + "\n" +
                "- Salt: " + get_salt + "\n" +
-               "- Password: " + digest_salted + "\n" + 
+               "- Password: " + digest_salted + "\n" +
                "- Hash function: " + control_variable.get() + "\n" +
                "- Sign algorithm: RSA" + "\n" +
                "- Sign: " + encrypt_rsa_text.get('1.0', tk.END) + "\n" +
@@ -178,6 +178,21 @@ button_decrypt = tk.Button(frame2,
 # Create a text field wiht digest decrypted
 decrypt_rsa_text = tk.Text(frame2)
 
+# Create a University name label
+label_university_name = tk.Label(frame2)
+label_university_name.config(text="Universidad Distrital Francisco José de Caldas",
+                             fg="black",
+                             bg="#73c6b6",
+                             pady=8,
+                             font=("Times", 20, "italic"))
+# Create a University name label
+label_subject = tk.Label(frame2)
+label_subject.config(text="Criptorgrafía y Blockchain",
+                     fg="black",
+                     bg="#73c6b6",
+                     pady=8,
+                     font=("Times", 14, "italic"))
+
 ### Widgets frame 3 ###
 
 # Create a certifcate label
@@ -259,6 +274,10 @@ decrypt_rsa_text.place(relwidth=0.95,
                        relheight=0.09,
                        relx=0.025,
                        rely=0.57)
+label_university_name.place(relx=0.1,
+                            rely=0.7)
+label_subject.place(relx=0.3,
+                    rely=0.82)
 
 # Widgets is being placed in frame 3
 label_certificate.pack()
@@ -284,7 +303,7 @@ entry_password.place(relwidth=0.9,
 button_gen_certificate.place(relx=0.05,
                              rely=0.36)
 certificate_text.place(relwidth=0.9,
-                       relheight=0.35,
+                       relheight=0.55,
                        relx=0.05,
                        rely=0.41)
 
