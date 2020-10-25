@@ -32,7 +32,7 @@ class rsa():
 		return key_encrypted
 
 	def decrypt_key(self, key_encrypted):
-		recipent_key = RSA.import_key(open("public.pem").read())
+		recipent_key = RSA.import_key(open("private.pem").read())
 		cipher_rsa = PKCS1_OAEP.new(recipent_key)
 		key_decrypted = cipher_rsa.decrypt(key_encrypted)
 

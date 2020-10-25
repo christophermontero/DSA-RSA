@@ -12,6 +12,7 @@ import utils
 # Function for opening the
 # file explorer root
 
+
 def browseFiles():
   filename = filedialog.askopenfilename(initialdir="/home/giocom21/Documents",
                                         title="Select a File",
@@ -20,6 +21,7 @@ def browseFiles():
                                                    ("all files",
                                                     "*.*")))
   file_path.insert(tk.END, filename)
+
 
 def compute_digest():
   path = file_path.get()
@@ -35,20 +37,24 @@ def compute_digest():
   digest = _hash.function()
 
   digest_text.insert(tk.END, digest)
-  
+
+
 def sign():
-    rsa = alg.rsa()
-    rsa.generate_key_pair()
-    digest_bytes = str.encode(digest_text.get('1.0', tk.END))
-    sign = rsa.encrypt_key(digest_bytes)
-    encrypt_rsa_text.insert(tk.END, sign.hex())
-    
+  rsa = alg.rsa()
+  rsa.generate_key_pair()
+  digest_bytes = str.encode(digest_text.get('1.0', tk.END))
+  sign = rsa.encrypt_key(digest_bytes)
+  encrypt_rsa_text.insert(tk.END, sign.hex())
+
+
 def validate_sign():
-    rsa = alg.rsa()
-    sign_bytes = str.encode(encrypt_rsa_text.get('1.0', tk.END))
-    print(type(sign_bytes))
-    validation = rsa.decrypt_key(sign_bytes)
-    decrypt_rsa_text.insert(tk.END, validation.hex())
+  rsa = alg.rsa()
+  digest_bytes = str.encode(digest_text.get('1.0', tk.END))
+  sign = rsa.encrypt_key(digest_bytes)
+  sign = rsa.encrypt_key(digest_bytes)
+  validation = rsa.decrypt_key(sign)
+  decrypt_rsa_text.insert(tk.END, validation.decode())
+
 
 # Create the root
 root = tk.Tk()
@@ -88,10 +94,10 @@ frame3.place(relwidth=0.3,
 # Create title label
 label_title = tk.Label(frame1)
 label_title.config(text="Digital Signature Algorithm",
-                  fg="black",
-                  bg="#73c6b6",
-                  pady=8,
-                  font=("Times", 24, "italic"))
+                   fg="black",
+                   bg="#73c6b6",
+                   pady=8,
+                   font=("Times", 24, "italic"))
 
 # Create a File Explorer label
 label_file_explorer = tk.Label(frame1)
@@ -154,18 +160,18 @@ decrypt_rsa_text = tk.Text(frame2)
 # Create a certifcate label
 label_certificate = tk.Label(frame3)
 label_certificate.config(text="Certificate",
-                           fg="black",
-                           bg="#73c6b6",
-                           pady=8,
-                           font=("Times", 24, "italic"))
+                         fg="black",
+                         bg="#73c6b6",
+                         pady=8,
+                         font=("Times", 24, "italic"))
 
 # Create a certifcate name label
 label_certificate_name = tk.Label(frame3)
 label_certificate_name.config(text="Certificate name",
-                               fg="black",
-                               bg="#73c6b6",
-                               pady=8,
-                               font=("Times", 12, "italic"))
+                              fg="black",
+                              bg="#73c6b6",
+                              pady=8,
+                              font=("Times", 12, "italic"))
 
 # Create a certifcate name entry
 entry_certifcate_name = tk.Entry(frame3)
@@ -187,10 +193,10 @@ entry_name.config(fg="black", bg="white")
 # Create password label
 label_password = tk.Label(frame3)
 label_password.config(text="Password",
-                  fg="black",
-                  bg="#73c6b6",
-                  pady=8,
-                  font=("Times", 12, "italic"))
+                      fg="black",
+                      bg="#73c6b6",
+                      pady=8,
+                      font=("Times", 12, "italic"))
 
 # Create a password entry
 entry_password = tk.Entry(frame3)
@@ -227,23 +233,23 @@ decrypt_rsa_text.place(relwidth=0.95,
 label_certificate.pack()
 label_certificate_name.place(relx=0.05,
                              rely=0.1)
-entry_certifcate_name.place(relwidth=0.9, 
-                            relheight=0.03, 
-                            relx=0.05, 
+entry_certifcate_name.place(relwidth=0.9,
+                            relheight=0.03,
+                            relx=0.05,
                             rely=0.15)
 label_name.place(relx=0.05,
                  rely=0.18)
-entry_name.place(relwidth=0.9, 
-                 relheight=0.03, 
-                 relx=0.05, 
+entry_name.place(relwidth=0.9,
+                 relheight=0.03,
+                 relx=0.05,
                  rely=0.23)
 
 label_password.place(relx=0.05,
-                 rely=0.26)
-entry_password.place(relwidth=0.9, 
-                 relheight=0.03, 
-                 relx=0.05, 
-                 rely=0.31)
+                     rely=0.26)
+entry_password.place(relwidth=0.9,
+                     relheight=0.03,
+                     relx=0.05,
+                     rely=0.31)
 
 # Let the root wait for any events
 root.mainloop()
