@@ -62,3 +62,14 @@ class hash():
 			self.digest.update(self.text)
 			
 		return self.digest.hexdigest()
+
+class expanded_key():
+	def __init__(self, password):
+		self.password = password
+		self.salt = None
+
+	def salt(self, password):
+		pass
+
+	def digest(self, self.salt, password):
+		pass
