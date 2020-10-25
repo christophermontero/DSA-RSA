@@ -77,4 +77,8 @@ class expanded_key():
 		return self.salted.hex()
 
 	def digest(self):
-		pass
+		digest = SHA256.new()
+		new_password = str.encode(self.password) + self.salted
+		digest.update(new_password)
+
+		return digest.hexdigest()
