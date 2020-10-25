@@ -1,6 +1,8 @@
 from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA224, SHA256, SHA384, SHA512, keccak
 from Crypto.Cipher import PKCS1_OAEP
+from Crypto.Random import get_random_bytes
+
 
 class rsa():
 	def __init__(self):
@@ -66,10 +68,13 @@ class hash():
 class expanded_key():
 	def __init__(self, password):
 		self.password = password
-		self.salt = None
+		self.salted = None
 
-	def salt(self, password):
-		pass
+	def salt(self):
+		pad = get_random_bytes(16)
+		self.salted = pad
 
-	def digest(self, self.salt, password):
+		return self.salted.hex()
+
+	def digest(self):
 		pass
