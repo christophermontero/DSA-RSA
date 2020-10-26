@@ -63,6 +63,16 @@ def gen_cert():
   text = file_utf8.read()
   file_utf8.close()
 
+  # Let's get public key
+  public_key = open('public.pem', "r", encoding='utf-8')
+  text = public_key.read()
+  public_key.close()
+
+  # Let's get private key
+  private_key = open('public.pem', "r", encoding='utf-8')
+  text = private_key.read()
+  private_key.close()
+
   # Let's get password salted
   password_salted = algorithms.expanded_key(entry_password.get())
   get_salt = password_salted.salt()
@@ -74,6 +84,8 @@ def gen_cert():
                "- Password: " + digest_salted + "\n" +
                "- Hash function: " + control_variable.get() + "\n" +
                "- Sign algorithm: RSA" + "\n" +
+               "- Private key: " + private_key +
+               "- Public key: " + public_key +
                "- Sign: " + encrypt_rsa_text.get('1.0', tk.END) + "\n" +
                "- Message: " + text)
   certificate_text.insert(tk.END, cert_info)
